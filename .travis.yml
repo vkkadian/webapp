@@ -1,6 +1,7 @@
 language: java
 script: mvn package -Popenshift
 jdk:
+<<<<<<< HEAD
 - oraclejdk7
 - openjdk7
 - openjdk6
@@ -13,3 +14,6 @@ deploy:
   domain: dummycompany
   on:
     repo: vkkadian/webapp
+=======
+  - oraclejdk7
+>>>>>>> origin/master
