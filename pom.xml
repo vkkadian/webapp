@@ -33,19 +33,16 @@
 			<artifactId>tomcat7-maven-plugin</artifactId>
 			<version>2.2</version>
 			<configuration>
-				<path>/</path>
+				<path>/webapp</path>
 			</configuration>
 		  </plugin>
 
 		</plugins>
 
 	</build>
+	<!--
 	<profiles>
 	      <profile>
-	         <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-	         <!-- Use this profile for any OpenShift specific customization your app will need. -->
-	         <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-	         <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 	         <id>openshift</id>
 	         <build>
 	            <plugins>
@@ -53,7 +50,6 @@
 	                  <artifactId>maven-war-plugin</artifactId>
 	                  <version>2.1.1</version>
 	                  <configuration>
-	                     <outputDirectory>.dpl</outputDirectory>
 	                     <warName>webapp</warName>
 	                     <failOnMissingWebXml>false</failOnMissingWebXml>
 	                  </configuration>
@@ -62,4 +58,5 @@
 	         </build>
 	      </profile>
 	</profiles>	
+	-->
 </project>
