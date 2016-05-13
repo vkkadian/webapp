@@ -1,0 +1,78 @@
+[
+  {
+    "userType": "M",
+    "userTypeDescription": "Management",
+    "items": [
+      {
+        "item_id": "001",
+        "item_name": "Shirt",
+        "unitPrice": 27.99,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.05,
+        "surchargeApplicable": true
+      },
+      {
+        "item_id": "002",
+        "item_name": "Trouser",
+        "unitPrice": 18.99,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.05,
+        "surchargeApplicable": true
+      },
+      {
+        "item_id": "003",
+        "item_name": "Physics Book",
+        "unitPrice": 9.75,
+        "baseSurchargeRate": 0.0,
+        "additionalSurchargeRate": 0.05,
+        "surchargeApplicable": false
+      },
+      {
+        "item_id": "004",
+        "item_name": "Tie",
+        "unitPrice": 11.25,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.05,
+        "surchargeApplicable": true
+      }
+    ]
+  },
+  {
+    "userType": "NM",
+    "userTypeDescription": "Non-Management",
+    "items": [
+      {
+        "item_id": "005",
+        "item_name": "Shirt",
+        "unitPrice": 27.99,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.0,
+        "surchargeApplicable": true
+      },
+      {
+        "item_id": "006",
+        "item_name": "Trouser",
+        "unitPrice": 18.99,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.0,
+        "surchargeApplicable": true
+      },
+      {
+        "item_id": "007",
+        "item_name": "Physics Book",
+        "unitPrice": 9.75,
+        "baseSurchargeRate": 0.0,
+        "additionalSurchargeRate": 0.0,
+        "surchargeApplicable": false
+      },
+      {
+        "item_id": "008",
+        "item_name": "Tie",
+        "unitPrice": 11.25,
+        "baseSurchargeRate": 0.1,
+        "additionalSurchargeRate": 0.0,
+        "surchargeApplicable": true
+      }
+    ]
+  }
+]

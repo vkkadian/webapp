@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dummy Company Application</title>
+    <style>
+      .itemname.ng-valid {
+          background-color: lightgreen;
+      }
+      .itemname.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .itemname.ng-dirty.ng-invalid-minlength {
+          background-color: yellow;
+      }
+
+      .quantity.ng-valid {
+          background-color: lightgreen;
+      }
+      .quantity.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .quantity.ng-dirty.ng-invalid-quantity {
+          background-color: yellow;
+      }
+
+    </style>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <link href="static/css/app.css" rel="stylesheet"></link>       
+     
+</head>
+  <body ng-app="dummyApp" class="ng-cloak">
+      <div class="generic-container" ng-controller="CatalogueController as ctrl">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Purchase Form </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="userTypeSelect">User Type</label>
+                              <div class="col-md-7">
+								  <select name="userTypeSelect" id="userTypeSelect"
+								  	ng-options="option.userType for option in ctrl.userTypes track by option.userType"
+      								ng-change="ctrl.setItems()" ng-model="ctrl.userTypeSelected" required>
+      								<option value=""></option> 
+      							  </select>                      
+								  <!--
+								  <hr>
+								  <tt>option = {{ctrl.userTypeSelected}}</tt><br/>      
+								  -->							            
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.userTypeSelect.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.userTypeSelect.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>    
+                                           
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="itemSelect">Item Name</label>
+                              <div class="col-md-7">
+								  <select name="itemSelect" id="itemSelect"
+								  	ng-options="option.item_name for option in ctrl.items track by option.item_id"
+      								ng-model="ctrl.itemSelected" 
+      								ng-change="ctrl.setOrderItem()"
+      								required>
+      								<option value=""></option> 
+      							  </select>                      
+								  <!--
+								  <hr>
+								  <tt>option = {{ctrl.itemSelected}}</tt><br/>      
+								  -->							            
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.itemSelect.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.itemSelect.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="quantity">Quantity</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-change = "ctrl.compute()" ng-model="ctrl.orderItem.quantity" id="quantity" class="quantity form-control input-sm" placeholder="Enter item quantity" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.quantity.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.quantity.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="unitPrice">Unit Price</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.unitPrice" id="unitPrice" class="form-control input-sm" placeholder="Price"/>
+                              </div>
+                          </div>
+                      </div>                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="baseSurchargeValue">Base Surcharge</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.baseSurchargeValue" id="baseSurchargeValue" class="form-control input-sm" placeholder="Base Surcharge"/>
+                              </div>
+                          </div>
+                      </div>  
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="additionalSurchargeValue">Additional Surcharge</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.additionalSurchargeValue" id="additionalSurchargeValue" class="form-control input-sm" placeholder="Additional Surcharge"/>
+                              </div>
+                          </div>
+                      </div>  
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="totalSurcharge">Total Surcharge</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.totalSurcharge" id="totalSurcharge" class="form-control input-sm" placeholder="Total Surcharge"/>
+                              </div>
+                          </div>
+                      </div>  
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="totalPrice">Total Price</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.totalPrice" id="totalPrice" class="form-control input-sm" placeholder="Total Price"/>
+                              </div>
+                          </div>
+                      </div>                                                                    
+                      <div class="row">
+                          <div class="form-actions floatRight">
+                              <input type="button"  ng-click="ctrl.addNewItem()" value="Add to Cart" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <!--
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-primary btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+ 							  -->
+                          <tr>
+                              <td>
+                              <button type="button" ng-click="ctrl.submitOrder()" class="btn btn-primary btn-sm">Submit Order</button> 
+                              </td>                          
+                          </tr>                              
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of items in the cart </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>User Type</th>
+                              <th>Item Id</th>
+                              <th>Item Name</th>
+                              <th>Quantity</th>
+                              <th>Unit Price</th>
+                              <th>Base Surcharge</th>
+                              <th>Additional Surcharge</th>
+                              <th>Total Surcharge</th>
+                              <th>Total Price (including Total Surcharge)</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="i in ctrl.orderItems">
+                              <td><span ng-bind="i.userType"></span></td>
+                              <td><span ng-bind="i.item_id"></span></td>
+                              <td><span ng-bind="i.item_name"></span></td>
+                              <td><span ng-bind="i.quantity"></span></td>
+                              <td><span ng-bind="i.unitPrice"></span></td>
+                              <td><span ng-bind="i.baseSurchargeValue"></span></td>
+                              <td><span ng-bind="i.additionalSurchargeValue"></span></td>
+                              <td><span ng-bind="i.totalSurcharge"></span></td>
+                              <td><span ng-bind="i.totalPrice"></span></td>
+                          </tr>
+					  	
+                      </tbody>
+					<tfoot class="formcontainer" width="20%">
+                          <tr>
+                              <td colspan="7"><span><h1>Grand Total</h1></span></td>
+                              <td style="background-color: highlight;"><span><h3>{{ctrl.totalSurcharge}}</h3></span></td>
+                              <td style="background-color: highlight;"><span><h3>{{ctrl.totalPrice}}</h3></span></td>
+                              
+
+                          </tr>					
+					</tfoot>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+      <script src="static/js/app.js"></script>
+      <script src="static/js/service/catalogueService.js"></script>
+      <script src="static/js/controller/catalogueController.js"></script>  
+</body>
+</html>
