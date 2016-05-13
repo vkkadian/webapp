@@ -1,5 +1,5 @@
 language: java
-script: mvn package -Popenshift
+script: mvn tomcat7:run
 jdk:
   - oraclejdk7
 deploy:
