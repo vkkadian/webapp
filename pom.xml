@@ -10,7 +10,7 @@
   <name>Dummy Web Application</name>
   <url>http://maven.apache.org</url>
 	<build>
-		<finalName>DummyWebApp</finalName>
+		<finalName>ROOT</finalName>
 
 		<plugins>
 		    <!-- Eclipse project -->
@@ -33,7 +33,7 @@
 			<artifactId>tomcat7-maven-plugin</artifactId>
 			<version>2.2</version>
 			<configuration>
-				<path>/DummyWebApp</path>
+				<path>/</path>
 			</configuration>
 		  </plugin>
 
