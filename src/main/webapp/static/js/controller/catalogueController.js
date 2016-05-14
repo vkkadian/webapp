@@ -52,8 +52,8 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
           
           self.reset = function () {
         	  self.orderItem = new self.Item();
-        	  self.itemSelected='';
-        	  self.userTypeSelected='';
+        	  //self.itemSelected='';
+        	  //self.userTypeSelected='';
         	  $scope.myForm.$setPristine(); //reset Form
           }
           
@@ -84,6 +84,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
         		  return;
         	  }
         	  self.orderItem.userType = selectedUserType.userType;
+        	  
         	  if(selectedUserType.userType==='M'){
         		  self.items = self.catalogue[0].items;
         	  }else if(selectedUserType.userType==='NM'){
@@ -91,7 +92,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
         	  }
           }
           self.setOrderItem = function(){
-        	  if(self.itemSelected.item_id){
+        	  if(self.itemselected && self.itemSelected.item_id){
 	        	  self.orderItem.item_id = self.itemSelected.item_id;
 	        	  self.orderItem.item_name = self.itemSelected.item_name;
 	        	  self.orderItem.unitPrice = self.itemSelected.unitPrice;
