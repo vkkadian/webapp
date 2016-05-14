@@ -4,7 +4,7 @@ var catalogueService = angular.module('catalogueService', ['ngResource']);
 App.factory('Catalogue', ['$resource', function ($resource) {
 	//$resource() function returns an object of resource class
     return $resource(
-    		'http://http://webapp-dummycompany.rhcloud.com/webapp/static/data/data.json', {},
+    		'http://webapp-dummycompany.rhcloud.com/webapp/static/data/data.json', {},
     		{
     		    query: {
     		        method: 'GET',
