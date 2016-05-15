@@ -52,8 +52,8 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
           
           self.reset = function () {
         	  self.orderItem = new self.Item();
-        	  //self.itemSelected='';
-        	  //self.userTypeSelected='';
+        	  self.itemSelected='';
+        	  self.userTypeSelected='';
         	  $scope.myForm.$setPristine(); //reset Form
           }
           
