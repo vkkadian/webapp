@@ -104,7 +104,7 @@
                       </div>                      
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="baseSurchargeValue">Base Surcharge</label>
+                              <label class="col-md-2 control-lable" for="baseSurchargeValue">Base Surcharge Value</label>
                               <div class="col-md-7">
                                   <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.baseSurchargeValue" id="baseSurchargeValue" class="form-control input-sm" placeholder="Base Surcharge"/>
                               </div>
@@ -112,7 +112,7 @@
                       </div>  
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="additionalSurchargeValue">Additional Surcharge</label>
+                              <label class="col-md-2 control-lable" for="additionalSurchargeValue">Additional Surcharge Value</label>
                               <div class="col-md-7">
                                   <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.additionalSurchargeValue" id="additionalSurchargeValue" class="form-control input-sm" placeholder="Additional Surcharge"/>
                               </div>
@@ -120,7 +120,7 @@
                       </div>  
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="totalSurcharge">Total Surcharge</label>
+                              <label class="col-md-2 control-lable" for="totalSurcharge">Total Surcharge Value</label>
                               <div class="col-md-7">
                                   <input type="text" ng-disabled="true" ng-model="ctrl.orderItem.totalSurcharge" id="totalSurcharge" class="form-control input-sm" placeholder="Total Surcharge"/>
                               </div>
@@ -137,14 +137,12 @@
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="button"  ng-click="ctrl.addNewItem()" value="Add to Cart" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                              <!--
-                              <button type="button" ng-click="ctrl.reset()" class="btn btn-primary btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
- 							  -->
-                          <tr>
-                              <td>
-                              <button type="button" ng-click="ctrl.submitOrder()" class="btn btn-primary btn-sm">Submit Order</button> 
-                              </td>                          
-                          </tr>                              
+                              
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                              
+                              <button type="button" ng-click="ctrl.resetComplete()" class="btn btn-warning btn-sm" ng-disabled="ctrl.orderItems.length==0">Reset Cart</button>
+
+                              <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">                             
                           </div>
                       </div>
                   </form>

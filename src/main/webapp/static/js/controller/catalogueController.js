@@ -7,68 +7,83 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
             
   	        this.item_id = '';
   	        this.item_name = '';
-  	        this.unitPrice = 0;
-  	        this.baseSurchargeRate = 0;
-  	        this.additionalSurchargeRate = 0;
-  	        this.quantity = 0;	
-          	this.baseSurchargeValue = 0;
-          	this.additionalSurchargeValue = 0;
-          	this.totalSurcharge = 0;
-          	this.totalPrice = 0;
+  	        this.unitPrice = 0.00;
+  	        this.baseSurchargeRate = 0.00;
+  	        this.additionalSurchargeRate = 0.00;
+  	        this.quantity = 1;	
+          	this.baseSurchargeValue = 0.00;
+          	this.additionalSurchargeValue = 0.00;
+          	this.totalSurcharge = 0.00;
+          	this.totalPrice = 0.00;
           	this.userType = '';
             this.userTypeDescription = '';
 
           }
+          self.decimals = 2;
+          self.items=[];
+          self.orderItems=[];
+          self.orderItem = new self.Item();
+
+          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];
+          self.userTypeSelected='';
+          self.itemSelected='';
+          self.totalSurcharge=0.00;
+          self.totalPrice=0.00;          
+
 
           self.Item.prototype.computeBaseSurchargeValue = function(){
-        	  this.baseSurchargeValue = (parseFloat(this.quantity)*parseFloat(this.unitPrice)*parseFloat(this.baseSurchargeRate)).toFixed(2);
+        	  this.baseSurchargeValue = self.round(this.quantity*this.unitPrice*this.baseSurchargeRate);
           }
           
           self.Item.prototype.computeAdditionalSurchargeValue = function(){
-        	  this.additionalSurchargeValue = (parseFloat(this.quantity)*parseFloat(this.unitPrice)*parseFloat(this.additionalSurchargeRate)).toFixed(2);
-        	  console.log("additionalSurchargeRate::" + this.additionalSurchargeRate);
-        	  console.log("unit price::" + this.unitPrice);
-        	  console.log("quantity::" + this.quantity);
-        	  console.log(this.additionalSurchargeValue);
+        	  this.additionalSurchargeValue = self.round(this.quantity*this.unitPrice*this.additionalSurchargeRate);
           }
           
           self.Item.prototype.computeTotalPrice=function(){
-	        	this.totalPrice = (parseFloat(this.quantity) * parseFloat(this.unitPrice) + 
-	        			parseFloat(this.baseSurchargeValue) +
-	        			parseFloat(this.additionalSurchargeValue)).toFixed(2);
+	        	this.totalPrice = self.round(this.quantity*this.unitPrice + this.baseSurchargeValue +	this.additionalSurchargeValue);
 	      }
           self.Item.prototype.computeTotalSurcharge=function(){
-	        	this.totalSurcharge = (parseFloat(this.baseSurchargeValue) + 
-	        			parseFloat(this.additionalSurchargeValue)).toFixed(2);
+	        	this.totalSurcharge = self.round(this.baseSurchargeValue + this.additionalSurchargeValue);
 	      }          
-          
-          self.orderItem = new self.Item();
           
           self.addNewItem = function () {
         	  self.orderItems.push(self.orderItem);
-        	  self.totalSurcharge= (parseFloat(self.totalSurcharge) + parseFloat(self.orderItem.totalSurcharge)).toFixed(2);
-        	  self.totalPrice= (parseFloat(self.totalPrice) + parseFloat(self.orderItem.totalPrice)).toFixed(2);        	  
+        	  self.totalSurcharge= self.round(self.totalSurcharge + self.orderItem.totalSurcharge);
+        	  self.totalPrice= self.round(self.totalPrice + self.orderItem.totalPrice);        	  
         	  self.reset();
+          }
+
+          self.resetForm =  function () {
+            $scope.myForm.$setPristine(); //reset Form
+          }
+
+
+          self.resetModelValues =  function () {
+
+            self.orderItem = new self.Item();
+            self.userTypeSelected='';
+            self.itemSelected='';
+            self.items = [];            
+            self.totalSurcharge = 0.00;
+            self.totalPrice=0.00;
+          }          
+          
+          self.resetComplete = function () {
+            self.resetForm();
+            self.resetModelValues();
+            self.orderItems = [];
           }
           
           self.reset = function () {
-        	  self.orderItem = new self.Item();
-        	  self.itemSelected='';
-        	  self.userTypeSelected='';
-        	  $scope.myForm.$setPristine(); //reset Form
+        	  self.resetForm();
+            self.resetModelValues();
           }
           
           self.submitOrder = function(){
         	  self.orderReceipt = Order.query();
+            self.resetComplete();
           }
-          
-          self.items=[];
-          self.totalSurcharge=0.00;
-          self.totalPrice=0.00;
-          self.orderItems=[];
-          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];
-          self.userTypeSelected='';
-          self.itemSelected='';
+
           self.fetchCatalogue = function(){
         	  Catalogue.query().$promise.then(function(data) {
         		  self.catalogue = data;
@@ -78,19 +93,14 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
          
           self.setItems = function(){
         	  var selectedUserType = self.userTypeSelected;
-            self.orderItem = new self.Item();
-            self.itemSelected='';
-        	  if(!selectedUserType){
-        		  self.items =[];
-        		  return;
-        	  }
-            
-        	  self.orderItem.userType = selectedUserType.userType;
-        	  
-        	  if(selectedUserType.userType==='M'){
-        		  self.items = self.catalogue[0].items;
-        	  }else if(selectedUserType.userType==='NM'){
-        		  self.items = self.catalogue[1].items;
+            self.resetModelValues();
+            self.userTypeSelected = (selectedUserType)?selectedUserType:'';
+        	  self.orderItem.userType = (selectedUserType)?selectedUserType.userType:'';
+        	  self.orderItem.userTypeDescription = (selectedUserType)?selectedUserType.userTypeDescription:'';
+        	  if(selectedUserType && selectedUserType.userType==='M'){
+        		  self.items = (self.catalogue)?self.catalogue[0].items:[];
+        	  }else if(selectedUserType && selectedUserType.userType==='NM'){
+        		  self.items = (self.catalogue)?self.catalogue[1].items:[];
         	  }
           }
           self.setOrderItem = function(){
@@ -100,14 +110,16 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
 	        	  self.orderItem.unitPrice = self.itemSelected.unitPrice;
 	        	  self.orderItem.baseSurchargeRate = self.itemSelected.baseSurchargeRate;
 	        	  self.orderItem.additionalSurchargeRate = self.itemSelected.additionalSurchargeRate;
-        	  }
-        	  
+        	  }else{
+              self.orderItem = new self.Item();
+              self.orderItem.userType = self.userTypeSelected.userType;
+              self.orderItem.userTypeDescription = self.userTypeSelected.userTypeDescription;
+            }
+        	  self.compute();
           }
           self.compute = function(){
-        	  console.log(self.orderItem.quantity);
         	  if(self.orderItem.quantity && 
-        			  self.orderItem.unitPrice){
-        		  console.log("computing now...");
+       			  self.orderItem.unitPrice){
 	        	  self.orderItem.computeBaseSurchargeValue();
 	        	  self.orderItem.computeAdditionalSurchargeValue();
 	        	  self.orderItem.computeTotalPrice();
@@ -116,6 +128,11 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
         	  }     		  
           }          
           
+          self.round = function(value) {
+
+              return Number(Math.round(value+'e'+self.decimals)+'e-'+self.decimals);
+          }
+
           self.fetchCatalogue();
          
 
