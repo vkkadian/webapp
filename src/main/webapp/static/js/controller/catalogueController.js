@@ -77,12 +77,14 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
          
           self.setItems = function(){
         	  var selectedUserType = self.userTypeSelected;
-        	  self.orderItem = new self.Item();
+        	  self.reset();
+
         	  if(!selectedUserType){
         		
         		  self.items =[];
         		  return;
         	  }
+            
         	  self.orderItem.userType = selectedUserType.userType;
         	  
         	  if(selectedUserType.userType==='M'){
