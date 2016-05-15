@@ -79,8 +79,8 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
           self.setItems = function(){
         	  var selectedUserType = self.userTypeSelected;
             self.orderItem = new self.Item();
+            self.itemSelected='';
         	  if(!selectedUserType){
-              self.itemSelected='';
         		  self.items =[];
         		  return;
         	  }
