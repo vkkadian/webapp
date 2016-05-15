@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, Catalogue) {
+App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function($scope, Catalogue,Order) {
 		  
           var self = this;
           self.Item = function () {
@@ -20,11 +20,10 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
 
           }
           self.decimals = 2;
+          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];          
           self.items=[];
           self.orderItems=[];
           self.orderItem = new self.Item();
-
-          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];
           self.userTypeSelected='';
           self.itemSelected='';
           self.totalSurcharge=0.00;
@@ -64,14 +63,14 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
             self.userTypeSelected='';
             self.itemSelected='';
             self.items = [];            
-            self.totalSurcharge = 0.00;
-            self.totalPrice=0.00;
           }          
           
           self.resetComplete = function () {
             self.resetForm();
             self.resetModelValues();
             self.orderItems = [];
+            self.totalSurcharge = 0.00;
+            self.totalPrice=0.00;            
           }
           
           self.reset = function () {
