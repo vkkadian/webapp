@@ -92,7 +92,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
         	  }
           }
           self.setOrderItem = function(){
-        	  if(self.itemselected && self.itemSelected.item_id){
+        	  if(self.itemSelected && self.itemSelected.item_id){
 	        	  self.orderItem.item_id = self.itemSelected.item_id;
 	        	  self.orderItem.item_name = self.itemSelected.item_name;
 	        	  self.orderItem.unitPrice = self.itemSelected.unitPrice;
