@@ -6,16 +6,17 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
           self.Item = function () {
             
   	        this.item_id = '';
-	        this.item_name = '';
-	        this.unitPrice = 0;
-	        this.baseSurchargeRate = 0;
-	        this.additionalSurchargeRate = 0;
-	        this.quantity = 0;	
-        	this.baseSurchargeValue = 0;
-        	this.additionalSurchargeValue = 0;
-        	this.totalSurcharge = 0;
-        	this.totalPrice = 0;
-        	this.userType = '';
+  	        this.item_name = '';
+  	        this.unitPrice = 0;
+  	        this.baseSurchargeRate = 0;
+  	        this.additionalSurchargeRate = 0;
+  	        this.quantity = 0;	
+          	this.baseSurchargeValue = 0;
+          	this.additionalSurchargeValue = 0;
+          	this.totalSurcharge = 0;
+          	this.totalPrice = 0;
+          	this.userType = '';
+            this.userTypeDescription = '';
 
           }
 
@@ -65,7 +66,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
           self.totalSurcharge=0.00;
           self.totalPrice=0.00;
           self.orderItems=[];
-          self.userTypes=[{'userType':'M'},{'userType':'NM'}];
+          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];
           self.userTypeSelected='';
           self.itemSelected='';
           self.fetchCatalogue = function(){
@@ -77,10 +78,9 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', function($scope, C
          
           self.setItems = function(){
         	  var selectedUserType = self.userTypeSelected;
-        	  self.reset();
-
+            self.orderItem = new self.Item();
         	  if(!selectedUserType){
-        		
+              self.itemSelected='';
         		  self.items =[];
         		  return;
         	  }

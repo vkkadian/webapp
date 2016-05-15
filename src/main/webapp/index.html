@@ -40,7 +40,7 @@
                               <label class="col-md-2 control-lable" for="userTypeSelect">User Type</label>
                               <div class="col-md-7">
 								  <select name="userTypeSelect" id="userTypeSelect"
-								  	ng-options="option.userType for option in ctrl.userTypes track by option.userType"
+								  	ng-options="option.userTypeDescription for option in ctrl.userTypes track by option.userType"
       								ng-change="ctrl.setItems()" ng-model="ctrl.userTypeSelected" required>
       								<option value=""></option> 
       							  </select>                      
