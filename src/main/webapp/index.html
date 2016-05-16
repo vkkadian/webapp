@@ -30,7 +30,7 @@
      
 </head>
   <body ng-app="dummyApp" class="ng-cloak">
-      <div class="generic-container" ng-controller="CatalogueController as ctrl">
+      <div class="generic-container" ng-controller="Controller as ctrl">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Purchase Form </span></div>
               <div class="formcontainer">
@@ -161,7 +161,7 @@
                           <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Order Receipt</h4>
+                              <h3 class="modal-title">Order Receipt</h4>
                             </div>
                             <div class="modal-body">
                               <div class="panel panel-default">
@@ -178,7 +178,7 @@
                                                   <th>Quantity</th>
                                                   <th>Unit Price</th>
                                                   <th>Surcharge</th>                                                  
-                                                  <th>Amount</th>
+                                                  <th>Total Price</th>
                                                   <th width="20%"></th>
                                               </tr>
                                           </thead>
@@ -268,6 +268,6 @@
       <script src="static/js/app.js"></script>
       <script src="static/js/service/catalogueService.js"></script>
       <script src="static/js/service/orderService.js"></script>      
-      <script src="static/js/controller/catalogueController.js"></script>  
+      <script src="static/js/controller/controller.js"></script>  
 </body>
 </html>

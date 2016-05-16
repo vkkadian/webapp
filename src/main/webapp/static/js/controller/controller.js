@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function($scope, Catalogue,Order) {
+App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, Catalogue,Order) {
 		  
           var self = this;
           self.Item = function () {
@@ -20,7 +20,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
 
           }
           self.decimals = 2;
-          self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];          
+          self.userTypes='';          
           self.items=[];
           self.orderItems=[];
           self.orderReceipt = '';
@@ -108,6 +108,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
         	  Catalogue.query().$promise.then(function(data) {
         		  self.catalogue = data;
         		  self.isArray = self.catalogue instanceof Array;
+              self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];
         	  });
           };
          
