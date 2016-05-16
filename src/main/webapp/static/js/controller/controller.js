@@ -91,7 +91,7 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
           self.prepareOrder = function (){
             var order =[];
             for (var i =0;i < self.orderItems.length; i++) {
-              var orderItem = new self.Item();
+              var orderItem = {};
               orderItem.item_id = self.orderItems[i].item_id;
               orderItem.userType = self.orderItems[i].userType;
               orderItem.quantity = self.orderItems[i].quantity;
@@ -99,6 +99,7 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
               orderItem.unitPrice = self.orderItems[i].unitPrice;
               orderItem.totalPrice = self.orderItems[i].totalPrice;
               orderItem.totalSurcharge = self.orderItems[i].totalSurcharge;
+
               order.push(orderItem);
             };
             return order;
