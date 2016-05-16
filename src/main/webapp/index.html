@@ -140,11 +140,80 @@
                               
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                               
-                              <button type="button" ng-click="ctrl.resetComplete()" class="btn btn-warning btn-sm" ng-disabled="ctrl.orderItems.length==0">Reset Cart</button>
+                              <button type="button" ng-click="ctrl.resetComplete(1)" class="btn btn-warning btn-sm" ng-disabled="ctrl.orderItems.length==0">Reset Cart</button>
 
-                              <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">                             
+                              <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">      
                           </div>
+                         
                       </div>
+                      <div class="row" ng-hide="ctrl.orderReceipt===''">
+                        <hr>
+                          <div class="form-actions floatRight">
+                              <!-- Trigger the receipt in a modal dialog with a button -->
+                              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#receiptView" >Order Receipt</button>
+                          </div>
+                      </div>                 
+                      <!-- Modal -->
+                      <div id="receiptView" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Order Receipt</h4>
+                            </div>
+                            <div class="modal-body">
+                              <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                  <div class="panel-heading"><span class="lead">Order #: {{ctrl.orderReceipt.order_reference}}</span></div>
+                                  <div class="tablecontainer">
+                                      <table class="table table-hover">
+                                          <thead>
+                                              <tr>
+                                                  
+                                                  <th>Item Id</th>
+                                                  <th>User Type</th>
+                                                  <th>Item Name</th>
+                                                  <th>Quantity</th>
+                                                  <th>Unit Price</th>
+                                                  <th>Surcharge</th>                                                  
+                                                  <th>Amount</th>
+                                                  <th width="20%"></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr ng-repeat="i in ctrl.orderReceipt.items">
+                                                  <td><span ng-bind="i.item_id"></span></td>
+                                                  <td><span ng-bind="i.userType"></span></td>
+                                                  <td><span ng-bind="i.item_name"></span></td>
+                                                  <td><span ng-bind="i.quantity"></span></td>
+                                                  <td><span ng-bind="i.unitPrice"></span></td>
+                                                  <td><span ng-bind="i.totalSurcharge"></span></td>
+                                                  <td><span ng-bind="i.totalPrice"></span></td>
+
+                                              </tr>
+                                  
+                                          </tbody>
+                                          <tfoot class="formcontainer" width="20%">
+                                              <tr>
+                                                  <td colspan="5"><span><h1>Grand Total</h1></span></td>
+                                                  <td style="background-color: highlight;"><span><h3>{{ctrl.orderReceipt.totalSurcharge}}</h3></span></td>
+                                                  <td style="background-color: highlight;"><span><h3>{{ctrl.orderReceipt.totalPurchaseAmount}}</h3></span></td>
+                                              </tr>         
+                                          </tfoot>
+                                      </table>
+                                  </div>
+                              </div>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>                               
                   </form>
               </div>
           </div>
@@ -181,20 +250,19 @@
                           </tr>
 					  	
                       </tbody>
-					<tfoot class="formcontainer" width="20%">
+            					<tfoot class="formcontainer" width="20%">
                           <tr>
                               <td colspan="7"><span><h1>Grand Total</h1></span></td>
                               <td style="background-color: highlight;"><span><h3>{{ctrl.totalSurcharge}}</h3></span></td>
                               <td style="background-color: highlight;"><span><h3>{{ctrl.totalPrice}}</h3></span></td>
-                              
-
                           </tr>					
-					</tfoot>
+            					</tfoot>
                   </table>
               </div>
           </div>
       </div>
-      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
       <script src="static/js/app.js"></script>

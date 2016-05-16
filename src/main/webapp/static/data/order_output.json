@@ -1,0 +1,18 @@
+{
+  "order_reference": "39",
+  "items": [
+    {
+      "item_id": "001","userType": "M","quantity": 1,"item_name": "Shirt","unitPrice": 27.99,"totalPrice": 100,"totalSurcharge": 4.2
+    },
+    {
+      "item_id": "002","userType": "M","quantity": 1,"item_name": "Trouser","unitPrice": 18.99,"totalPrice": 100,"totalSurcharge": 4.2
+    },
+    {
+      "item_id": "003","userType": "M","quantity": 1,"item_name": "Physics book","unitPrice": 9.75,"totalPrice": 100,"totalSurcharge": 4.2
+    },
+    {
+      "item_id": "004","userType": "M","quantity": 1,"item_name": "Tie","unitPrice": 11.25,"totalPrice": 100,"totalSurcharge": 4.2
+    }],
+    "totalPurchaseAmount": 400,
+    "totalSurcharge": 16.8
+}

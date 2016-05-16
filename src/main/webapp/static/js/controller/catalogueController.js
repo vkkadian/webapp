@@ -23,6 +23,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
           self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];          
           self.items=[];
           self.orderItems=[];
+          self.orderReceipt = '';
           self.orderItem = new self.Item();
           self.userTypeSelected='';
           self.itemSelected='';
@@ -46,6 +47,7 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
 	      }          
           
           self.addNewItem = function () {
+            self.orderReceipt='';
         	  self.orderItems.push(self.orderItem);
         	  self.totalSurcharge= self.round(self.totalSurcharge + self.orderItem.totalSurcharge);
         	  self.totalPrice= self.round(self.totalPrice + self.orderItem.totalPrice);        	  
@@ -65,10 +67,11 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
             self.items = [];            
           }          
           
-          self.resetComplete = function () {
+          self.resetComplete = function (resetReceipt) {
             self.resetForm();
             self.resetModelValues();
             self.orderItems = [];
+            self.orderReceipt = (!resetReceipt)?self.orderReceipt: '';            
             self.totalSurcharge = 0.00;
             self.totalPrice=0.00;            
           }
@@ -79,8 +82,26 @@ App.controller('CatalogueController', ['$scope', 'Catalogue', 'Order', function(
           }
           
           self.submitOrder = function(){
-        	  self.orderReceipt = Order.query();
+            Order.save(self.prepareOrder()).$promise.then(function(data) {
+              self.orderReceipt = data;
+            });            
             self.resetComplete();
+          }
+          
+          self.prepareOrder = function (){
+            var order =[];
+            for (var i =0;i < self.orderItems.length; i++) {
+              var orderItem = new self.Item();
+              orderItem.item_id = self.orderItems[i].item_id;
+              orderItem.userType = self.orderItems[i].userType;
+              orderItem.quantity = self.orderItems[i].quantity;
+              orderItem.item_name = self.orderItems[i].item_name;
+              orderItem.unitPrice = self.orderItems[i].unitPrice;
+              orderItem.totalPrice = self.orderItems[i].totalPrice;
+              orderItem.totalSurcharge = self.orderItems[i].totalSurcharge;
+              order.push(orderItem);
+            };
+            return order;
           }
 
           self.fetchCatalogue = function(){
