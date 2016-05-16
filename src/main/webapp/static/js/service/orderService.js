@@ -8,8 +8,7 @@ App.factory('Order', ['$resource', function ($resource) {
     	'http://order-excercise.rhcloud.com/order',{},
     		{
 		        save: {
-		            method: 'POST',
-		            headers:{'Content-Type':'application/json;charset=UTF-8'}
+		            method: 'POST'
 		          }
     		}
     );

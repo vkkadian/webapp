@@ -9,9 +9,6 @@ App.factory('Catalogue', ['$resource', function ($resource) {
     		{
     		    query: {
     		        method: 'GET',
-    		        transformResponse: function(data) {
-    		          return angular.fromJson(data);
-    		        },
     		        isArray: true
     		      }    			
     		}    		
