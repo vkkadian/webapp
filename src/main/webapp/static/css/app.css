@@ -7,9 +7,14 @@ body, .form-control{
 	font-size:12px!important;
 }
 
-.floatRight{
-	float:right;
+.floatLeft{
+	margin-left: 180px;
 	margin-right: 18px;
+}
+
+.floatRight{
+  float: right;
+  margin-right: 280px;
 }
 
 .has-error{

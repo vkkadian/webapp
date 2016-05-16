@@ -41,7 +41,7 @@
                               <div class="col-md-7">
 								  <select name="userTypeSelect" id="userTypeSelect"
 								  	ng-options="option.userTypeDescription for option in ctrl.userTypes track by option.userType"
-      								ng-change="ctrl.setItems()" ng-model="ctrl.userTypeSelected" required>
+      								ng-change="ctrl.setItems()" ng-model="ctrl.userTypeSelected" class="form-control" required>
       								<option value=""></option> 
       							  </select>                      
 								  <!--
@@ -63,7 +63,7 @@
 								  <select name="itemSelect" id="itemSelect"
 								  	ng-options="option.item_name for option in ctrl.items track by option.item_id"
       								ng-model="ctrl.itemSelected" 
-      								ng-change="ctrl.setOrderItem()"
+      								ng-change="ctrl.setOrderItem()" class="form-control"
       								required>
       								<option value=""></option> 
       							  </select>                      
@@ -135,23 +135,24 @@
                           </div>
                       </div>                                                                    
                       <div class="row">
-                          <div class="form-actions floatMiddle">
+                          <div class="form-actions floatLeft">
                               <input type="button"  ng-click="ctrl.addNewItem()" value="Add to Cart" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                               
                               <button type="button" ng-click="ctrl.resetComplete(1)" class="btn btn-warning btn-sm" ng-disabled="ctrl.orderItems.length==0">Reset Cart</button>
 
-                              <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">      
+                              <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">
+                              <div ng-hide="ctrl.orderReceipt===''" class="form-actions floatRight">
+                                  <!-- Trigger the receipt in a modal dialog with a button -->
+                                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#receiptView" >Order Receipt</button>
+                              </div>                               
                           </div>
+                          
                          
                       </div>
                       <div class="row" ng-hide="ctrl.orderReceipt===''">
-                        <hr>
-                          <div class="form-actions floatMiddle">
-                              <!-- Trigger the receipt in a modal dialog with a button -->
-                              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#receiptView" >Order Receipt</button>
-                          </div>
+
                       </div>                 
                       <!-- Modal -->
                       <div id="receiptView" class="modal fade" role="dialog">
