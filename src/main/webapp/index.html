@@ -84,7 +84,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="quantity">Quantity</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-change = "ctrl.compute()" ng-model="ctrl.orderItem.quantity" id="quantity" class="quantity form-control input-sm" placeholder="Enter item quantity" required/>
+                                  <input type="number" min="1" max="99" ng-minlength="1" ng-maxlength="5" ng-change = "ctrl.compute()" ng-model="ctrl.orderItem.quantity" id="quantity" class="quantity form-control input-sm" placeholder="Enter item quantity" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.quantity.$error.required">This is a required field</span>
                                       <span ng-show="myForm.quantity.$invalid">This field is invalid </span>
@@ -135,7 +135,7 @@
                           </div>
                       </div>                                                                    
                       <div class="row">
-                          <div class="form-actions floatRight">
+                          <div class="form-actions floatMiddle">
                               <input type="button"  ng-click="ctrl.addNewItem()" value="Add to Cart" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
@@ -148,7 +148,7 @@
                       </div>
                       <div class="row" ng-hide="ctrl.orderReceipt===''">
                         <hr>
-                          <div class="form-actions floatRight">
+                          <div class="form-actions floatMiddle">
                               <!-- Trigger the receipt in a modal dialog with a button -->
                               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#receiptView" >Order Receipt</button>
                           </div>
