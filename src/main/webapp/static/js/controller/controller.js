@@ -102,7 +102,7 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
 
               order.push(orderItem);
             };
-            return JSON.stringify(order);
+            return order;
           }
 
           self.fetchCatalogue = function(){
