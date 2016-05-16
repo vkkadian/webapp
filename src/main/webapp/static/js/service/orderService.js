@@ -9,6 +9,7 @@ App.factory('Order', ['$resource', function ($resource) {
     		{
 		        save: {
 		            method: 'POST',
+		            headers:{'Content-Type':'text/plain'},
     		        transformResponse: function(data) {
     		          return angular.fromJson(data);
     		        },		            
