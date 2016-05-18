@@ -19,6 +19,7 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
             this.userTypeDescription = '';
 
           }
+          self.dataLoading='';
           self.decimals = 2;
           self.userTypes='';          
           self.items=[];
@@ -82,9 +83,12 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
           }
           
           self.submitOrder = function(){
+            self.dataLoading = 'loading';
             Order.save(self.prepareOrder()).$promise.then(function(data) {
               self.orderReceipt = data;
+              self.dataLoading = '';
             });            
+            
             self.resetComplete();
           }
           
@@ -107,6 +111,7 @@ App.controller('Controller', ['$scope', 'Catalogue', 'Order', function($scope, C
 
           self.fetchCatalogue = function(){
         	  Catalogue.query().$promise.then(function(data) {
+              self.dataLoading = false;
         		  self.catalogue = data;
         		  self.isArray = self.catalogue instanceof Array;
               self.userTypes=[{'userType':'M','userTypeDescription':'Management'},{'userType':'NM','userTypeDescription':'Non-Management'}];

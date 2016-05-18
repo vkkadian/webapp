@@ -6,6 +6,7 @@ App.factory('Order', ['$resource', function ($resource) {
     return $resource(
     	//'/webapp/static/data/order_output.json',{},
     	'http://order-excercise.rhcloud.com/order',{},
+    	//'http://localhost:8090/order',{},
     		{
 		        save: {
 		            method: 'POST'

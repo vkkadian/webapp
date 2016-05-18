@@ -143,6 +143,9 @@
                               <button type="button" ng-click="ctrl.resetComplete(1)" class="btn btn-warning btn-sm" ng-disabled="ctrl.orderItems.length==0">Reset</button>
 
                               <input type="button" ng-click="ctrl.submitOrder()" value="Submit" class="btn btn-primary btn-sm" ng-disabled="ctrl.orderItems.length==0">
+                              <div ng-show="ctrl.dataLoading!=''">
+                                  <h3>Processing order, please wait...<h3>
+                              </div>
                               <div ng-hide="ctrl.orderReceipt===''" class="form-actions floatRight">
                                   <!-- Trigger the receipt in a modal dialog with a button -->
                                   <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#receiptView" >Order Receipt...</button>

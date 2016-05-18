@@ -1,4 +1,4 @@
 'use strict';
 
-var App = angular.module('dummyApp',['catalogueService']);
+var App = angular.module('dummyApp',['catalogueService','orderService']);
 
