@@ -1,13 +1,13 @@
- language: java
- script: mvn package -Popenshift
-  jdk:
-    - oraclejdk7
- deploy:
+language: java
+script: mvn package -Popenshift
+jdk:
+  - oraclejdk7
+deploy:
   provider: openshift
   user: vkkadian@gmail.com
   password:
-  	secure: J17lEh7KneLmjiME4h22IytAuiz279f1Yg9q2J/Rf8KNSyTSmwcIVzpFG4PgRo+GrExQfuXhuMpQP03yOE0dgC4GPh75gKxtTS4FGE2d68PzMCQF87NFpfTwdA53ojqNzMkXGlqL/aHuvPr7VtDCavffHzl82ue1IrhjIBdWsJrBWzTOUDBvspc+O46CEW1i9JOdS2WjQJRqlcg7S0OnXrg5QyAfh7iOxx7b2Nx1g6YyZw7Js9Nna1kDI06Ghnd3YR0BtePLTldNNJbvXIka6xcbpe3+xW0KYnqqSCmy9NEsNawK7jW1BPe+a+ANInz7hQoe/EPiTpWakZUU5GHljDrqP6qFIp706xwbjpz7WpuI4A1ZDVlCVsnn4634HNkc0SpE+tcxK0DVgLE7JRhDoIUzlLvJ6wuay4ai5APKMZGHLUk6POiKuMf+cKOzCxaa2l+Y7l6dVdW2KB3i3cRu/58T8cofIQB/gso+xy17mcM2JuHb/DUAgehrNr1G3x0xqOTUljHbqt7vfSe3gDnEueusgwmpTuWKtY6jaOd2hUQnV5IUNVAyuHfAa0nlnWb23W6QgvRarKQ/3HmRvc4Qq34ysnl/H4/80GmK8OwD4k/WZhLMnQJLmJQ7Rldv3WVtGNl5AgK4GAYVxlAFJaRS1vrViC9Olw5qTZ3/+Rjbl7k=
+    secure: J17lEh7KneLmjiME4h22IytAuiz279f1Yg9q2J/Rf8KNSyTSmwcIVzpFG4PgRo+GrExQfuXhuMpQP03yOE0dgC4GPh75gKxtTS4FGE2d68PzMCQF87NFpfTwdA53ojqNzMkXGlqL/aHuvPr7VtDCavffHzl82ue1IrhjIBdWsJrBWzTOUDBvspc+O46CEW1i9JOdS2WjQJRqlcg7S0OnXrg5QyAfh7iOxx7b2Nx1g6YyZw7Js9Nna1kDI06Ghnd3YR0BtePLTldNNJbvXIka6xcbpe3+xW0KYnqqSCmy9NEsNawK7jW1BPe+a+ANInz7hQoe/EPiTpWakZUU5GHljDrqP6qFIp706xwbjpz7WpuI4A1ZDVlCVsnn4634HNkc0SpE+tcxK0DVgLE7JRhDoIUzlLvJ6wuay4ai5APKMZGHLUk6POiKuMf+cKOzCxaa2l+Y7l6dVdW2KB3i3cRu/58T8cofIQB/gso+xy17mcM2JuHb/DUAgehrNr1G3x0xqOTUljHbqt7vfSe3gDnEueusgwmpTuWKtY6jaOd2hUQnV5IUNVAyuHfAa0nlnWb23W6QgvRarKQ/3HmRvc4Qq34ysnl/H4/80GmK8OwD4k/WZhLMnQJLmJQ7Rldv3WVtGNl5AgK4GAYVxlAFJaRS1vrViC9Olw5qTZ3/+Rjbl7k=
   app: webapp
   domain: dummycompany
   on:
-  	repo: vkkadian/webapp
+    repo: vkkadian/webapp
